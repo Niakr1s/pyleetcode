@@ -1,14 +1,13 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        cache = set()
-        left = right = max_len = 0
-        while len(s) - right != 0 and len(s) - left > max_len:
-            if s[right] not in cache:
-                cache.add(s[right])
-                right += 1
-                max_len = max(max_len, len(cache))
-            else:
-                cache.remove(s[left])
-                left += 1
+        seen: dict[str, int] = {}
 
-        return max_len
+        left = 0
+        max_len = 0
+        for right, ch in enumerate(s):
+            if ch in seen and seen[ch] >= left:
+                left = seen[ch] + 1
+            else:
+                max_len = max(max_len, right - left + 1)
+            seen[ch] = right
+        return max(max_len, len(s) - left)

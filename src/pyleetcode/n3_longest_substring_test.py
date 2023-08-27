@@ -10,6 +10,8 @@ from pyleetcode.n3_longest_substring import Solution
         ("aa", 1),
         ("abcda", 4),
         ("abbcd", 3),
+        ("abba", 2),
+        ("tmmzuxt", 5),
         ("abcabcbb", 3),
         ("pwwkew", 3),
     ),
