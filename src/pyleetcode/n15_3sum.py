@@ -1,29 +1,28 @@
-from bisect import bisect_left, bisect_right
+from bisect import bisect_left
 
 
 class Solution:
     def threeSum(self, nums: list[int]) -> list[list[int]]:
-        nums = sorted(nums)
         result: list[list[int]] = []
-        while len(nums) != 0:
-            first = nums[0]
-            twoSums = self._twoSum(nums[1:], -first)
-            result.extend(([first, *twoSum] for twoSum in twoSums))
-            nums = nums[bisect_right(nums, first) :]
+        if len(nums) < 3:
+            return result
+
+        nums = sorted(nums)
+        for i1, n1 in enumerate(nums[0:-2]):
+            if i1 > 0 and nums[i1 - 1] == n1:
+                continue
+
+            inner = nums[i1 + 1 :]
+            for i2, n2 in enumerate(inner):
+                if i2 > 0 and inner[i2 - 1] == n2:
+                    continue
+
+                n3 = 0 - n1 - n2
+                if _in(inner[i2 + 1 :], n3):
+                    result.append([n1, n2, n3])
         return result
 
-    def _twoSum(self, nums: list[int], target: int) -> list[list[int]]:
-        result: list[list[int]] = []
-        while len(nums) != 0:
-            first = nums[0]
-            wanted = target - first
-            nums = nums[1:]
-            found_idx = bisect_left(nums, wanted)
-            try:
-                if nums[found_idx] == wanted:
-                    result.append([first, wanted])
-            except IndexError:
-                pass
-            finally:
-                nums = nums[bisect_right(nums, first) : found_idx]
-        return result
+
+def _in(a, x) -> bool:
+    i = bisect_left(a, x)
+    return i != len(a) and a[i] == x
