@@ -1,5 +1,5 @@
 import pytest
-from pyleetcode.n74_search_2d_matrix import Solution
+from pyleetcode.n74_search_2d_matrix import Solution, Solution2
 
 
 @pytest.mark.parametrize(
@@ -21,3 +21,4 @@ from pyleetcode.n74_search_2d_matrix import Solution
 )
 def test(matrix, target, expected):
     assert Solution().searchMatrix(matrix, target) == expected
+    assert Solution2().searchMatrix(matrix, target) == expected
