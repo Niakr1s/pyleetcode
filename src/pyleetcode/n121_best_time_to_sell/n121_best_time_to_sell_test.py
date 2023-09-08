@@ -1,5 +1,6 @@
 import pytest
-from pyleetcode.n121_best_time_to_sell import Solution
+
+from .n121_best_time_to_sell import Solution
 
 
 @pytest.mark.parametrize(

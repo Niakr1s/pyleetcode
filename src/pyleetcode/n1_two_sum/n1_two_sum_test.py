@@ -1,5 +1,6 @@
 import pytest
-from pyleetcode.n1_two_sum import Solution
+
+from .n1_two_sum import Solution
 
 
 @pytest.mark.parametrize(

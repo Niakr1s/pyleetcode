@@ -1,5 +1,6 @@
 import pytest
-from pyleetcode.n74_search_2d_matrix import Solution, Solution2
+
+from .n74_search_2d_matrix import Solution, Solution2
 
 
 @pytest.mark.parametrize(

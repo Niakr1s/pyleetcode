@@ -1,5 +1,6 @@
 import pytest
-from pyleetcode.n3_longest_substring import Solution
+
+from .n3_longest_substring import Solution
 
 
 @pytest.mark.parametrize(

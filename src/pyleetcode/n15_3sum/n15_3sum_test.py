@@ -1,5 +1,6 @@
 import pytest
-from pyleetcode.n15_3sum import Solution
+
+from .n15_3sum import Solution
 
 
 @pytest.mark.parametrize(

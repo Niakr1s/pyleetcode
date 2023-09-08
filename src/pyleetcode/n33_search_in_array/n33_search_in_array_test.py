@@ -1,5 +1,6 @@
 import pytest
-from pyleetcode.n33_search_in_array import Solution
+
+from .n33_search_in_array import Solution
 
 
 @pytest.mark.parametrize(

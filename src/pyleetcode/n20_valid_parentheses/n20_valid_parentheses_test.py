@@ -1,5 +1,6 @@
 import pytest
-from pyleetcode.n20_valid_parentheses import Solution
+
+from .n20_valid_parentheses import Solution
 
 
 @pytest.mark.parametrize(

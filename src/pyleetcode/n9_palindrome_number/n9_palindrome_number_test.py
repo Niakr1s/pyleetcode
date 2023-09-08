@@ -1,5 +1,6 @@
 import pytest
-from pyleetcode.n9_palindrome_number import Solution
+
+from .n9_palindrome_number import Solution
 
 
 @pytest.mark.parametrize(
