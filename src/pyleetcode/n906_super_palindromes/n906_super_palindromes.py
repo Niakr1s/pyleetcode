@@ -11,7 +11,22 @@ class Solution:
             left and right cannot have leading zeros.
             left is less than or equal to right.
 
+        The meaning of the following:
+
+        Let's take a number with 18 digits (maximum possible).
+        The square root of a number with 18 digits can have
+        a maximum of 9 digits.
+        It can only be a palindrome if:
+        the left 4 digits are mirrored through the center.
+        Therefore, our task is to iterate through palindromes
+        within the range from sqrt(left) to 10^5 and check
+        if their square is also a palindrome.
+
+        This code beats only 22% of submissions at leetcode,
+        so it can be vastly improved, but it works and it's good.
+
         """
+
         n = str(int(sqrt(int(left) - 1)))
         found = 0
         while True:
@@ -28,6 +43,7 @@ class Solution:
         return n == n[::-1]
     
     def next_palindrome(self, n: str) -> str:
+        # flag: whether we are folding with middle or not
         with_middle = len(n) % 2 == 1
         n_int = int(n)
 
@@ -44,6 +60,16 @@ class Solution:
                 with_middle = not with_middle
         return res
 
-    def mirror(self, n: str, with_middle: bool):
-        right = n[:len(n) - 1] if with_middle else n
-        return n + right[::-1]
+    def mirror(self, s: str, with_middle: bool):
+        """
+        Mirrors the given string `n` by appending the reverse of its right half.
+        
+        Parameters:
+            n: The string to be mirrored.
+            with_middle: Include the middle character of the string in the mirror?
+        
+        Returns:
+            str: The mirrored string.
+        """
+        right = s[:len(s) - 1] if with_middle else s
+        return s + right[::-1]
