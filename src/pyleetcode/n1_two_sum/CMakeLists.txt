@@ -1,0 +1,1 @@
+add_library(n1 SHARED n1_two_sum.c)
