@@ -1,6 +1,3 @@
-from math import sqrt
-
-
 class Solution:
     def superpalindromesInRange(self, left: str, right: str) -> int:
         """
@@ -22,43 +19,42 @@ class Solution:
         within the range from sqrt(left) to 10^5 and check
         if their square is also a palindrome.
 
-        This code beats only 22% of submissions at leetcode,
-        so it can be vastly improved, but it works and it's good.
-
         """
+        l_int, r_int = int(left), int(right)
 
-        n = str(int(sqrt(int(left) - 1)))
+        pow = (len(left) // 2 // 2)-1
+        pow = 0 if pow < 0 else pow
+        half = 10 ** pow
+        s = str(half)
+        with_middle = len(s) % 2 != 0
         found = 0
         while True:
-            n = self.next_palindrome(n)
-            n2 = str(int(n) ** 2)
-            if int(n2) > int(right):
+            s = str(half)
+            current_len = len(s)
+            s = self.mirror(s, with_middle)
+
+            n = int(s)
+            n_pow = n ** 2
+
+            half += 1
+            if (len(str(half)) != current_len):
+                if with_middle:
+                    half //= 10
+                with_middle = not with_middle
+
+            if (n_pow < l_int or not self.is_palindrome(s)):
+                continue
+            if (n_pow > r_int):
                 break
-            if self.is_palindrome(n2):
+
+            if (self.is_palindrome(str(n_pow))):
                 found += 1
 
         return found
+
     
     def is_palindrome(self, n: str) -> bool:
         return n == n[::-1]
-    
-    def next_palindrome(self, n: str) -> str:
-        # flag: whether we are folding with middle or not
-        with_middle = len(n) % 2 == 1
-        n_int = int(n)
-
-        mid = len(n) // 2 + len(n) % 2
-        left = n[:mid]
-
-        res = n
-        while int(res := self.mirror(left, with_middle))  <= n_int:
-            was_len = len(left)
-            left = str(int(left) + 1)
-            if len(left) > was_len:
-                if with_middle:
-                    left = left[:-1]
-                with_middle = not with_middle
-        return res
 
     def mirror(self, s: str, with_middle: bool):
         """
