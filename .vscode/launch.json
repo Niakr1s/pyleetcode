@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "name": "CTest Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${cmake.testProgram} ",
+            "args": [
+                "${cmake.testArgs}"
+            ],
+            "cwd": ".",
+        }
+    ]
+}
